@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="{block:English}en{/block:English}{block:French}fr{/block:French}{block:German}de{/block:German}{block:Japanese}ja{/block:Japanese}{block:Italian}it{/block:Italian}{block:Spanish}es{/block:Spanish}{block:Polish}pl{/block:Polish}">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width">
+	<title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+	{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+
+	<meta name="color:Body" content="#343640"/>
+	
+	<meta name="color:Background" content="#ffffff"/>
+	<meta name="color:Text" content="#4e4e4e"/>
+	<meta name="color:Link" content="#356A9E"/>
+	<meta name="color:Alt Background" content="#1f2026"/>
+	<meta name="color:Alt Background Hover" content="#22232B"/>
+	<meta name="color:Alt Text" content="#a3a4a6"/>
+	<meta name="color:Alt Link" content="#d2d2d3"/>
+	<meta name="color:Alt Link Hover" content="#ffffff"/>
+	<meta name="color:Alt Link Disabled" content="#616266"/>
+
+	<meta name="image:Header" content=""/>
+
+	<link rel="apple-touch-icon" href="{PortraitURL-128}">
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+	<!--Normalize 2.1.0 CSS-->
+	<link rel="stylesheet" href="http://static.tumblr.com/cqczc5x/kYdmihjuj/normalize.css" type="text/css" media="all">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.css" rel="stylesheet">
+	<style type="text/css">
+		/* Global styles */
+		* {
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+
+		img, video, object, embed {
+			max-width: 100%;
+			height: auto;
+		}
+		body {
+			background: {color:Body};
+			margin: 20px;
+		}
+		a {
+			text-decoration: none;
+			color: {color:Link};
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		blockquote {
+			border-left: 3px solid {color:Text};
+			padding-left: 8px;
+			margin: 1em 8px;
+		}
+		.container {
+			max-width:	1300px;
+			margin: 0 auto;
+		}
+
+		.item {
+			border-radius: 8px;
+			padding: 8px;
+			width: 300px;
+			margin: 10px;
+		}
+		.item.item-top {
+			border-radius: 8px 8px 0 0;
+			margin-bottom: 0;
+		}
+		.item.item-middle {
+			border-radius: 0;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.item.item-bottom {
+			border-radius: 0 0 8px 8px;
+			margin-top: 0;
+		}
+
+		/* Sidebar styles */
+		.sidebar {
+			float: left;
+		}
+		.sidebar .item {
+			padding: 30px 15px;
+			background: {color:Alt Background};
+			color: {color:Alt Text};
+		}
+		.sidebar .item.item-top {
+			padding-bottom: 0;
+		}
+		.sidebar .item.item-middle {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+		.sidebar .item.item-bottom {
+			padding-top: 0;
+		}
+		.sidebar a {
+			color: {color:Alt Link} !important;
+			text-decoration: none !important;
+		}
+		.sidebar a:hover {
+			color: {color:Alt Link Hover} !important;
+			background: {color:Alt Background Hover};
+		}
+		.sidebar .avatar {
+			text-align: center;
+			padding-bottom: 30px !important;
+		}
+		.sidebar .avatar a:hover {
+		    background: transparent !important;
+		}
+		.sidebar .title {
+			font-size: 150%;
+			font-weight: bold;
+		}
+		.sidebar .description {
+			padding-bottom: 30px !important;
+		}
+		.sidebar .description p {
+			margin: 0;
+			padding: 0.5em 0;
+		}
+		.sidebar-link {
+			display: block;
+			font-size: 120%;
+			padding: 10px 10px 10px 25px !important;
+			margin-top: 1px !important;
+		}
+		.sidebar-link .fa {
+			padding-right: 10px;
+		}
+		.sidebar-search {
+			margin-top: 1px !important;
+			padding-top: 30px !important;
+		}
+		.sidebar-bottom-filler {
+			padding: 0 0 8px 0 !important;
+		}
+		.pagination {
+			font-size: 200%;
+			padding: 15px !important;
+		}
+		.pagination .disabled {
+			color: {color:Alt Link Disabled} !important;
+		}
+		.pagination.scrollwithpage {
+		    position: fixed;
+		    top: 3px;
+		}
+		.newer + .newer-disabled, .older + .older-disabled {
+			display: none;
+		}
+		.credits {
+			font-size: 65%;
+			background: transparent !important;
+			padding: 10px 0 !important;
+			text-align: center;
+		}
+		.credits a {
+			background: transparent !important;
+		}
+		.credits hover {
+		}
+
+		/* Post styles */
+		.content {
+			margin-left: 340px;
+		}
+		.result {
+			width: 500px;
+			margin: 10px auto;
+			text-align: center;
+			background-color: {color:Background};
+		}
+		.post .item {
+			background-color: {color:Background};
+			color: {color:Text};
+		}
+		.post .item.post-info {
+			background: {color:Alt Background};
+			color: {color:Alt Text};
+		}
+		.post-info a {
+			color: {color:Alt Link} !important;
+			text-decoration: none !important;
+		}
+		.post-info a:hover {
+			color: {color:Alt Link Hover} !important;
+		}
+		.post-info .post-icons a {
+			margin-left: 2px;
+		}
+		.chat {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.conversation {
+			list-style: none;
+			padding-left: 0;
+		}
+		.line {
+			padding: 0 15px;
+		}
+		.conversation .person {
+			font-weight: bold;
+		}
+		.conversation .line.even {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		.photo, .photoset, .video {
+			padding-top: 0;
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.photo .caption, .photoset .caption, .video .caption {
+			padding: 0 15px;
+			overflow: hidden;
+		}
+		.video iframe {
+			width: 300px;
+			height: auto;
+		}
+		.audio_player iframe {
+			width: 280px;
+			height: 40px;
+		}
+		.ask {
+			padding: 0 0 8px;
+		}
+		.ask .caption {
+			padding: 0 8px;
+		}
+		.question {
+			/* rounded corners hackish, -1px cause of AA issues */
+			border-radius: 7px 7px 0 0;
+			margin-bottom: 16px;
+		}
+		.answer {
+			margin-top: 16px;
+		}
+		.question, .answer {
+			padding: 16px;
+			background: {color:Alt Background};
+			color: {color:Alt Text};
+			position: relative;
+			margin-bottom: 16px;
+		}
+		.asker-line, .answerer-line {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+		.asker-line {
+			margin-left: 23px;
+		}
+		.asker-line .asker {
+			margin-left: 8px;
+		}
+		.answerer-line {
+			margin-right: 23px;
+			text-align: right;
+		}
+		.answerer-line .answerer {
+			margin-right: 8px;
+		}
+		.question:after, .answer:after { 
+			content:'';
+			position:absolute;
+			border-left: 12px solid transparent;
+			border-right: 12px solid transparent;
+			width:0;
+			height:0;
+		}
+		.question:after {
+			border-top: 12px solid {color:Alt Background};
+			left: 25px;
+			bottom: -12px;
+		}
+		.answer:after {
+			border-bottom: 12px solid {color:Alt Background};
+			right: 25px;
+			top: -12px;
+		}
+		.answer p:last-child {
+			margin-bottom: 0;
+		}
+		.answer p:first-child {
+			margin-top: 0;
+		}
+
+		/* Permalink page */
+		.permalink-page .container {
+			width: 800px;
+			margin: 0 auto;
+		}
+		.permalink-page .post .item {
+			width: 500px;
+		}
+		.permalink-page .question {
+			padding: 24px;
+		}
+
+		.post-notes {
+			padding: 0 0 8px;
+		}
+		.post-notes h1 {
+			text-align: center;
+			padding: 8px 0 4px 0;
+			margin: 0;
+		}
+		.post-notes .notes {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.post-notes .notes li {
+			padding: 12px 0 4px 20px;
+		}
+		.post-notes .notes li:nth-child(even) {
+			background-color: rgba(0,0,0,0.1);
+		}
+		.post-notes .avatar_frame {
+			margin-right: 4px;
+		}
+		.tag-list {
+			display: block;
+			list-style: none;
+			padding-left: 8px;
+		}
+		.tag-list li {
+			display: inline;
+			padding-right: 4px;
+		}
+
+		/* Uppy! */
+		.go-up {
+			display: none;
+			font-size: 400%;
+			position: fixed;
+			bottom: 20px;
+			right: 50px;
+			color: rgba(255, 255, 255, 0.1) !important;
+		}
+		.go-up:hover {
+			color: rgba(255, 255, 255, 0.4) !important;
+		}
+
+		/* Helper classes */
+		.inline-list {
+			display: inline;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.inline-list li {
+			display: inline;
+			font-size: 120%;
+		}
+
+		/* Clearfix */
+		.clearfix {zoom:1;}
+		.clearfix:before, .clearfix:after {
+		  content: "\0020";
+		  display: block;
+		  height: 0;
+		  overflow: hidden; }
+		.clearfix:after {clear: both;}
+
+		/* Tumblr inherited */
+		iframe#tumblr_controls {}
+		.search_query {}
+		.read_more_container a {}
+
+	</style>
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body class="body {block:PermalinkPage}permalink-page{/block:PermalinkPage}">
+	<div class="container">
+		<aside class="sidebar">
+			<div class="avatar item item-top">
+				<a href="/">
+					{block:IfHeaderImage}<img src="{image:Header}"/>{/block:IfHeaderImage}
+					{block:IfNotHeaderImage}<img src="{PortraitURL-128}"/>{/block:IfNotHeaderImage}
+				</a>
+			</div>
+			<div class="title item item-middle">
+				<a href="/">{Title}</a>
+			</div>
+			{block:Description}
+			<div class="description item item-middle">{Description}</div>
+			{/block:Description}
+			{block:AskEnabled}<a class="sidebar-link item item-middle" href="/ask"><i class="fa fa-comments"></i>{AskLabel}</a>{/block:AskEnabled}
+			{block:SubmissionsEnabled}<a class="sidebar-link item item-middle" href="/submit"><i class="fa fa-cloud-upload"></i>{SubmitLabel}</a>{/block:SubmissionsEnabled}
+			{block:HasPages}{block:Pages}
+			<a class="sidebar-link item item-middle" href="{URL}"><i class="fa fa-link"></i>{Label}</a>
+			{/block:Pages}{/block:HasPages}
+			<a class="sidebar-link item item-middle" href="/archive"><i class="fa fa-archive"></i>{lang:Archive}</a>
+			<!--<div class="sidebar-search item item-bottom">
+				<form id="search" action="/search" method="get">
+					<input type="text" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
+					<input type="submit" value="{lang:Search}">
+				</form>
+			</div>-->
+			<div class="sidebar-bottom-filler item item-bottom"></div>
+			{block:PermalinkPagination}
+			<div class="pagination item">
+				{block:NextPost}<a class="newer"href="{NextPost}" title="Newer post"><i class="fa fa-arrow-left"></i></a>{/block:NextPost}
+				<i class="fa fa-arrow-left newer-disabled disabled"></i>
+				{block:PreviousPost}<a class="older pull-right" href="{PreviousPost}" title="Older post"><i class="fa fa-arrow-right"></i></a>{/block:PreviousPost}
+				<i class="pull-right fa fa-arrow-right older-disabled disabled"></i>
+				<span class="clearfix"></span>
+			</div>
+			{/block:PermalinkPagination}
+
+			{block:Pagination}
+			<div class="pagination item">
+				{block:PreviousPage}<a class="newer" href="{PreviousPage}" title="Newer page"><i class="fa fa-arrow-left"></i></a>{/block:PreviousPage}
+				<i class="fa fa-arrow-left newer-disabled disabled"></i>
+				{block:NextPage}<a class="older pull-right" href="{NextPage}" title="Older page"><i class="fa fa-arrow-right"></i></a>{/block:NextPage}
+				<i class="pull-right fa fa-arrow-right older-disabled disabled"></i>
+				<span class="clearfix"></span>
+			</div>
+			{/block:Pagination}
+			<div class="credits item">
+				Nametag theme, by <a href="http://minti-pony.tumbr.com/">this guy</a>.
+			</div>
+		</aside>
+		<section class="content">
+			{block:TagPage}<div class="result item"><p>{lang:TagResultCount posts tagged Tag 3}</p></div>{/block:TagPage}
+			{block:SearchPage}
+			<div class="result item">
+				<p>{lang:Found SearchResultCount results for SearchQuery 2}</p>
+				{block:NoSearchResults}<p>{lang:No results for SearchQuery 2}</p>{/block:NoSearchResults}
+			</div>
+			{/block:SearchPage}
+			{block:Posts}
+			<article class="post {TagsAsClasses}">
+				{block:Text}
+				<div class="text item item-top">
+					{block:Title}<h3>{Title}</h3>{/block:Title}
+					{Body}
+				</div>
+				{/block:Text}
+				{block:Quote}
+				<div class="quote item item-top">
+					<blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+					{block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+				</div>
+				{/block:Quote}
+				{block:Link}
+				<div class="link item item-top">
+					<h3><a href="{URL}" {Target}>{Name}</a></h3>
+					{block:Description}<div class="caption">{Description}</div>{/block:Description}
+				</div>
+				{/block:Link}
+				{block:Video}
+				<div class="video item item-top">
+					{Video-500}
+					{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Video}
+				{block:Audio}
+				<div class="audio item item-top">
+					{AudioPlayerBlack}
+					{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Audio}
+				{block:Photo}
+				<div class="photo item item-top">
+						{LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}"/>{LinkCloseTag}
+						{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Photo}
+				{block:Photoset}
+				<div class="photoset item item-top" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
+					{block:Photos}<img src="{PhotoURL-500}" {block:HighRes}data-highres="{PhotoURL-HighRes}"{/block:HighRes} {block:Caption}alt="{Caption}"{/block:caption} />{/block:Photos}
+					{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Photoset}
+
+				{block:Panorama}
+				<div class="panorama item item-top">
+				    {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+				    {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Panorama}
+
+				{block:Chat}
+				<div class="chat item item-top">
+					{block:Title}<h3>{Title}</h3>{/block:Title}
+					<ul class="conversation">
+						{block:Lines}
+						<li class="line {Alt}">
+							{block:Label}<span class="person">{Label}</span>{/block:Label}
+							<span class="person-said">{Line}</span>
+						</li>
+						{/block:Lines}
+					</ul>
+				</div>
+				{/block:Chat}
+				{block:Answer}
+				<div class="ask item item-top">
+					<div class="question">{Question}</div>
+					<div class="asker-line"><img src="{AskerPortraitURL-24}" /> {Asker}</div>
+					{block:Answerer}
+					<div class="answerer-line">{Answerer} <img src="{AnswererPortraitURL-24}" /></div>
+					<div class="answer">{Answer}</div>
+					{/block:Answerer}
+					<div class="caption">
+						{Replies}
+					</div>
+				</div>
+				{/block:Answer}
+				{block:IndexPage}
+				<footer class="post-info item item-bottom">
+					<a href="{Permalink}" class="permalink">
+						{block:Date}
+						<time datetime="{Timestamp}" title="{TimeAgo}">
+							{block:NewDayDate}{Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}{/block:NewDayDate}
+							{block:SameDayDate}{Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}{/block:SameDayDate}
+						</time>
+						{/block:Date}
+					</a>
+					
+					<span class="pull-right post-icons">
+						{block:RebloggedFrom}<a href="{ReblogParentURL}" title="Reblogged from {ReblogParentName}, originally from {ReblogRootName}"><i class="fa fa-refresh"></i></a>{/block:RebloggedFrom}
+						{block:HasTags}<a href="{Permalink}#tags" class="tags" data-tags="{block:Tags}{Tag},{/block:Tags}"><i class="fa fa-tags"></i></a>{/block:HasTags}
+						{block:NoteCount}<a href="{Permalink}#notes" title="{NoteCountWithLabel}"><i class="fa fa-heart"></i> <span class="note-count">{NoteCount}</span></a>{/block:NoteCount}
+					</span>
+				</footer>
+				{/block:IndexPage}
+				{block:PermalinkPage}
+				{block:HasTags}
+				<ul class="post-info tag-list item item-middle">
+					{block:Tags}
+					<li>
+						<a href="{TagURL}"><i class="fa fa-tag"></i> {Tag}</a>
+					</li>
+					{/block:Tags}
+				</ul>
+				{/block:HasTags}
+				<footer class="post-info item item-bottom">
+					{block:Date}
+					<a href="{Permalink}" class="permalink">
+						<i class="fa fa-clock-o"></i>
+						<time datetime="{Timestamp}" title="">Posted {TimeAgo}</time>
+					</a>
+					{/block:Date}
+					
+					<span class="pull-right post-icons">
+						{block:NoteCount}<a href="{Permalink}#notes" title="{NoteCountWithLabel}"><i class="fa fa-heart"></i> <span class="note-count">{NoteCount}</span></a>{/block:NoteCount}
+					</span>
+				</footer>
+				{block:PostNotes}
+				<section class="post-notes item">
+					<h1>Notes</h1>
+					{PostNotes}
+				</section>
+				{/block:PostNotes}
+				{/block:PermalinkPage}
+			</article>
+			{/block:Posts}
+		</section><!--/.content-->
+	</div><!--/.container-->
+
+	<a href="#" class="go-up">
+		<i class="fa fa-arrow-circle-up"></i>
+	</a>
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.0b2.110713/jquery.infinitescroll.min.js"></script>-->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.2/masonry.pkgd.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var $content = $(".content").masonry({
+				itemSelector: ".post",
+				stamp: ".result",
+				transitionDuration: 0
+			});
+			$(window).load(function() {
+				$(".photoset").each(function() {
+					var layout = $(this).attr("data-layout").split("").map(function(item) { return parseInt(item, 10); });
+					var images = $(this).find("img").toArray();
+					for(var pos = 0, i = 0; i < layout.length; pos += layout[i], i++) {
+						var elems = images.slice(pos, pos + layout[i]);
+						$(elems).css({
+							width: (100 / layout[i]) + "%",
+							height: elems.map(function(item) { return item.height; }).reduce(function(a, b) { return a < b ? a : b; })+ "px"
+						});
+					}
+				});
+				$content.masonry();
+			});
+
+			$(".tags").qtip({
+				content: {
+					"text": function(event, api) {
+						var tags = $(this).attr("data-tags").split(",");
+						tags.pop(); // Remove the forced blank tag on the end.
+						var tags = tags.map(function(item) {
+							return "#" + item;
+						})
+						return tags.join(" ");
+					}
+				},
+				position: { my: "top center", at: "bottom center" },
+				style: {
+					classes: "qtip-tipsy",
+					tip: true
+				}
+			});
+			$("[title]").qtip({
+				position: {
+					viewport: $(window)
+				},
+				style: {
+					classes: "qtip-tipsy",
+					tip: true
+				}
+			});
+
+			/*$('#content').infinitescroll({
+				navSelector  : "div.pagination",            
+				nextSelector : "div.pagination .next",    
+				itemSelector : "#content div.post"          
+			}, function(newElements) {
+				$content.masonry();
+			});*/
+
+			$('.note-count').each(function() {
+				$(this).text(parseInt($(this).text(), 10).toLocaleString('en'));
+			})
+
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > 300) {
+					$('.go-up:hidden').stop(true, true).fadeIn();
+				} else {
+					$('.go-up').stop(true, true).fadeOut();
+				}
+				var sbf = $('.sidebar-bottom-filler');
+			    var sidebarBottom = sbf.offset().top + sbf.outerHeight();
+				if ($(this).scrollTop() > sidebarBottom) {
+				    $('div.pagination').addClass('scrollwithpage');
+				} else {
+				    $('div.pagination').removeClass('scrollwithpage');
+				}
+			});
+			$(window).scroll(); // trigger the above if already scrolled
+			$(".go-up").click(function() {
+				$("html, body").animate({ scrollTop: 0 }, "slow");
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
