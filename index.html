@@ -375,6 +375,8 @@
 		.search_query {}
 		.read_more_container a {}
 
+		/* custom css */
+		{CustomCSS}
 	</style>
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
@@ -408,7 +410,7 @@
 			<div class="sidebar-bottom-filler item item-bottom"></div>
 			{block:PermalinkPagination}
 			<div class="pagination item">
-				{block:NextPost}<a class="newer"href="{NextPost}" title="Newer post"><i class="fa fa-arrow-left"></i></a>{/block:NextPost}
+				{block:NextPost}<a class="newer" href="{NextPost}" title="Newer post"><i class="fa fa-arrow-left"></i></a>{/block:NextPost}
 				<i class="fa fa-arrow-left newer-disabled disabled"></i>
 				{block:PreviousPost}<a class="older pull-right" href="{PreviousPost}" title="Older post"><i class="fa fa-arrow-right"></i></a>{/block:PreviousPost}
 				<i class="pull-right fa fa-arrow-right older-disabled disabled"></i>
@@ -572,7 +574,6 @@
 	</a>
 
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.0b2.110713/jquery.infinitescroll.min.js"></script>-->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.2/masonry.pkgd.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"></script>
 	<script type="text/javascript">
@@ -623,14 +624,6 @@
 					tip: true
 				}
 			});
-
-			/*$('#content').infinitescroll({
-				navSelector  : "div.pagination",            
-				nextSelector : "div.pagination .next",    
-				itemSelector : "#content div.post"          
-			}, function(newElements) {
-				$content.masonry();
-			});*/
 
 			$('.note-count').each(function() {
 				$(this).text(parseInt($(this).text(), 10).toLocaleString('en'));
