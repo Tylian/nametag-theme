@@ -19,6 +19,9 @@
 	<meta name="color:Alt Link Hover" content="#ffffff"/>
 	<meta name="color:Alt Link Disabled" content="#616266"/>
 
+	<meta name="select:Layout" content="blog-layout" title="Blog">
+	<meta name="select:Layout" content="grid-layout" title="Grid">
+
 	<meta name="image:Header" content=""/>
 
 	<link rel="apple-touch-icon" href="{PortraitURL-128}">
@@ -174,6 +177,7 @@
 		/* Post styles */
 		.content {
 			margin-left: 340px;
+			position: absolute;
 		}
 		.result {
 			width: 500px;
@@ -184,6 +188,7 @@
 		.post .item {
 			background-color: {color:Background};
 			color: {color:Text};
+			overflow: hidden;
 		}
 		.post .item.post-info {
 			background: {color:Alt Background};
@@ -296,15 +301,15 @@
 			margin-top: 0;
 		}
 
-		/* Permalink page */
-		.permalink-page .container {
-			width: 800px;
+		/* Permalink page + blog mode */
+		.permalink-page .container, .blog-layout .container {
+			width: 700px;
 			margin: 0 auto;
 		}
-		.permalink-page .post .item {
-			width: 500px;
+		.permalink-page .post .item, .blog-layout .post .item {
+			width: 400px;
 		}
-		.permalink-page .question {
+		.permalink-page .question, .blog-layout .question {
 			padding: 24px;
 		}
 
@@ -391,7 +396,7 @@
 	</style>
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
-<body class="body {block:PermalinkPage}permalink-page{/block:PermalinkPage}">
+<body class="body {select:Layout}{block:PermalinkPage} permalink-page{/block:PermalinkPage}">
 	<div class="container">
 		<aside class="sidebar">
 			<div class="avatar item item-top">
@@ -484,13 +489,14 @@
 				{/block:Audio}
 				{block:Photo}
 				<div class="photo item item-top">
-						{LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}"/>{LinkCloseTag}
+						{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
 						{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
 				</div>
 				{/block:Photo}
 				{block:Photoset}
 				<div class="photoset item item-top" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
-					{block:Photos}<img src="{PhotoURL-500}" {block:HighRes}data-highres="{PhotoURL-HighRes}"{/block:HighRes} {block:Caption}alt="{Caption}"{/block:caption} />{/block:Photos}
+					<!--{block:Photos}<img src="{PhotoURL-500}" {block:HighRes}data-highres="{PhotoURL-HighRes}"{/block:HighRes} {block:Caption}alt="{Caption}"{/block:caption} />{/block:Photos}-->
+					{Photoset}
 					{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
 				</div>
 				{/block:Photoset}
@@ -589,25 +595,24 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var $content = $(".content").masonry({
-				itemSelector: ".post",
-				stamp: ".result",
-				transitionDuration: 0
-			});
-			$(window).load(function() {
-				$(".photoset").each(function() {
-					var layout = $(this).attr("data-layout").split("").map(function(item) { return parseInt(item, 10); });
-					var images = $(this).find("img").toArray();
-					for(var pos = 0, i = 0; i < layout.length; pos += layout[i], i++) {
-						var elems = images.slice(pos, pos + layout[i]);
-						$(elems).css({
-							width: (100 / layout[i]) + "%",
-							height: elems.map(function(item) { return item.height; }).reduce(function(a, b) { return a < b ? a : b; })+ "px"
-						});
-					}
+			var layout = "{select:Layout}";
+
+			var $content = $(".content");
+			if(layout == "grid-layout") {
+				$content.masonry({
+					itemSelector: ".post",
+					stamp: ".result",
+					transitionDuration: 0
 				});
-				$content.masonry();
-			});
+				$(window).load(function() {
+					$content.masonry();
+				});
+				window.addEventListener("message", function(e) {
+					if(e.message.data.split(";")[0] == "resize_photoset_iframe") {
+						$content.masonry();
+					}
+				}, false);
+			}
 
 			$(".tags").qtip({
 				content: {
