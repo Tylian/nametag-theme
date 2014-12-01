@@ -21,6 +21,8 @@
 
 	<meta name="select:Layout" content="blog-layout" title="Blog">
 	<meta name="select:Layout" content="grid-layout" title="Grid">
+	
+	<meta name="if:Spacious sidebar" content="0"/>
 
 	<meta name="image:Header" content=""/>
 
@@ -86,6 +88,9 @@
 		/* Sidebar styles */
 		.sidebar {
 			float: left;
+			{block:IfSpaciousSidebar}
+			    line-height: 1.75em;
+			{/block:IfSpaciousSidebar}
 		}
 		.sidebar .item {
 			padding: 30px 15px;
